@@ -62,7 +62,10 @@ const loginUser = async (req, res) => {
       const isPassword = await bcrypt.compare(password, user.password);
       delete user.password;
       if (isPassword) {
-        const token = jwt.sign(user, "jorge" /*{expiresIn: '1h'}*/);
+        const token = jwt.sign(
+          user,
+          process.env.SECRET_ENCRYPT /*{expiresIn: '1h'}*/
+        );
         return res.status(200).json({
           user,
           token,
@@ -124,7 +127,10 @@ const authenticated = async (req, res) => {
       });
       user.friends = friends;
       delete user.password;
-      const token = jwt.sign(user, "jorge" /*{expiresIn: '1h'}*/);
+      const token = jwt.sign(
+        user,
+        process.env.SECRET_ENCRYPT /*{expiresIn: '1h'}*/
+      );
       return res.status(200).json({
         user,
         token,
