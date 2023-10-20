@@ -96,7 +96,7 @@ const configureSocket = (server) => {
     }
 
     socket.on("disconnect", async () => {
-      console.log("Disconnet", connectedUsers.get(user.id));
+      console.log("Disconnect", connectedUsers.get(user.id));
       connectedUsers.delete(user.id);
       await db.User.update(
         { status: "offline" },

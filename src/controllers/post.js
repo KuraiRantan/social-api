@@ -73,7 +73,6 @@ const getAllFriednsPosts = async (req, res) => {
     friends = friends.map((f) =>
       f.friend_id === user.id ? f.user_id : f.friend_id
     );
-    console.log(friends);
     let allPosts = await db.Post.findAll({
       order: [["createdAt", "DESC"]],
       where: {
@@ -105,7 +104,6 @@ const getAllFriednsPosts = async (req, res) => {
       ],
     });
 
-    console.log(allPosts);
     res.status(200).json(allPosts);
   } catch (error) {
     res.status(500).json({
@@ -140,7 +138,6 @@ const getMyPosts = async (req, res) => {
 
 const getPostById = async (req, res) => {
   const { postId } = req.params;
-  console.log("Dentro del post id");
   try {
     const post = await db.Post.findByPk(postId, {
       include: [

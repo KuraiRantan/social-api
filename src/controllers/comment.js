@@ -23,7 +23,6 @@ const createComment = async (req, res) => {
         },
       ],
     });
-    console.log(comment);
     res.status(201).json({ comment });
   } catch (error) {
     console.log(error);
